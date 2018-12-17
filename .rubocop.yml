@@ -1,0 +1,15 @@
+Documentation:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - 'Rakefile'
+    - 'Gemfile'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

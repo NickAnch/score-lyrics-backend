@@ -1,3 +1,4 @@
 class SongShowSerializer < ActiveModel::Serializer
-  attributes :singer, :name, :lyrics, :translate, :views, :linkUrl
+  attributes :singer, :name, :genre, :lyrics,
+             :translate, :views, :linkUrl
 end

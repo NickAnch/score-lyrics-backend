@@ -1,30 +1,36 @@
 class SongsController < ApplicationController
-
   skip_before_action :verify_authenticity_token
-  before_action :set_song, only: [:show, :update, :destroy]
+  before_action :set_song, only: %i[show update destroy]
 
   def index
     @songs = Song.all
 
-    render json: @songs, each_serializer: SongIndexSerializer
+    render json: @songs,
+           each_serializer: SongIndexSerializer
   end
 
   def show
-    render json: @song, each_serializer: SongShowSerializer
+    render json: @song,
+           each_serializer: SongShowSerializer
   end
 
   def create
-    @song = Song.new(song_params)
+    @song = Song.create(song_params)
 
-    @song.save
-    render json: @song
+    if @song.persisted?
+      render json: @song
+    else
+      render json: @song.errors,
+             status: :unprocessable_entity
+    end
   end
 
   def update
     if @song.update(song_params)
       render json: @song
     else
-      render json: @song.errors, status: :unprocessable_entity
+      render json: @song.errors,
+             status: :unprocessable_entity
     end
   end
 
@@ -35,10 +41,13 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:singer, :name, :lyrics, :translate, :linkUrl)
+    params.require(:song).permit(:singer, :name, :genre,
+                                 :lyrics, :translate, :linkUrl)
   end
 
   def set_song
-    @song = Song.find(params[:id])
+    @song = Song.find_by(id: params[:id])
+
+    head :unprocessable_entity unless @song
   end
 end

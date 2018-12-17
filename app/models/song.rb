@@ -1,5 +1,4 @@
 class Song < ApplicationRecord
-  validates :singer, presence: true
-  validates :name, presence: true
-  validates :lyrics, presence: true
+  validates :singer, :name, length: { minimum: 2 }
+  validates :lyrics, :genre, presence: true
 end
