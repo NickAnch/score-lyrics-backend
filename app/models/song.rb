@@ -1,4 +1,7 @@
 class Song < ApplicationRecord
   validates :singer, :name, length: { minimum: 2 }
-  validates :lyrics, :genre, presence: true
+  validates :lyrics, :genre_id, presence: true
+
+  has_many :ratings, dependent: :destroy
+  belongs_to :genre
 end

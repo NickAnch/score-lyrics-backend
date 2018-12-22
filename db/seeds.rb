@@ -6,4 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-FactoryBot.create_list :song, 10
+FactoryBot.create_list :genre, 5
+
+Genre.all.each do |genre|
+  FactoryBot.create_list :song, 3, genre: genre
+end
