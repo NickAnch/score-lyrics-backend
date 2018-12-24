@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  skip_before_action :authenticate_user!, only: %i[show index]
   before_action :set_song, only: %i[show update destroy]
 
   def index
@@ -11,7 +11,7 @@ class SongsController < ApplicationController
 
   def show
     render json: @song,
-           each_serializer: SongShowSerializer
+           serializer: SongShowSerializer
   end
 
   def create
@@ -32,10 +32,6 @@ class SongsController < ApplicationController
       render json: @song.errors,
              status: :unprocessable_entity
     end
-  end
-
-  def destroy
-    @song.destroy
   end
 
   private

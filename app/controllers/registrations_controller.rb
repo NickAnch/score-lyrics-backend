@@ -1,11 +1,4 @@
-class UsersController < ApplicationController
-  def show
-    @user = User.find_by(id: params[:id])
-
-    render json: @user,
-           each_serializer: UserSerializer
-  end
-
+class RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.create(user_params)
 

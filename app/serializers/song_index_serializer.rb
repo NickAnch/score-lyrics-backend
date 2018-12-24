@@ -3,8 +3,7 @@ class SongIndexSerializer < ActiveModel::Serializer
 
   def genre
     {
-      id: object.genres.id,
-      name: object.genres.name
+      name: object.genre.name
     }
   end
 

@@ -20,6 +20,8 @@ module ScoreLyricsBackend
       end
     end
 
+    config.middleware.use ActionDispatch::Flash
+
     config.generators do |g|
       g.test_framework  :rspec, :fixture => false
       g.view_specs      false

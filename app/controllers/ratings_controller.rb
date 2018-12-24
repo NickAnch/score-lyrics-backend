@@ -2,7 +2,7 @@ class RatingsController < ApplicationController
   before_action :find_song
 
   def create
-    @rating = @song.ratings.create_or_update(rating_params)
+    @rating = @song.ratings.find_or_create_by(rating_params)
 
     if @rating.persisted?
       render json: @rating

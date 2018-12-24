@@ -1,11 +1,10 @@
 class SongShowSerializer < ActiveModel::Serializer
-  attributes :singer, :name, :genre, :lyrics,
-             :translate, :views, :linkUrl, :rating
+  attributes :singer, :name, :lyrics, :translate,
+             :views, :linkUrl, :rating, :genre
 
   def genre
     {
-      id: object.genres.id,
-      name: object.genres.name
+      name: object.genre.name
     }
   end
 
