@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show index]
-  before_action :set_song, only: %i[show update destroy]
+  before_action :set_song, only: %i[show update]
 
   def index
     @songs = Song.all
@@ -10,6 +10,8 @@ class SongsController < ApplicationController
   end
 
   def show
+    @song.update(views: @song.views + 1)
+
     render json: @song,
            serializer: SongShowSerializer
   end
@@ -37,7 +39,7 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:singer, :name, :genre,
+    params.require(:song).permit(:singer, :name, :genre_id,
                                  :lyrics, :translate, :linkUrl)
   end
 

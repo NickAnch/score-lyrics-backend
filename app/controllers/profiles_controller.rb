@@ -1,12 +1,15 @@
 class ProfilesController < ApplicationController
+  before_action :set_user
+
   def show
     render json: @user,
-           each_serializer: ProfileSerializer
+           serializer: ProfileSerializer
   end
 
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: @user,
+             serializer: ProfileSerializer
     else
       render json: @user.errors,
              status: :unprocessable_entity
@@ -22,7 +25,7 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation,
-                                 :username, :birthday, :gender, :avatar)
+    params.require(:user).permit(:username, :birthday,
+                                 :gender, :avatar)
   end
 end

@@ -2,7 +2,8 @@ class RatingsController < ApplicationController
   before_action :find_song
 
   def create
-    @rating = @song.ratings.find_or_create_by(rating_params)
+    @rating = @song.ratings.find_or_create_by(user_id: current_user.id)
+    @rating.update(rating_params)
 
     if @rating.persisted?
       render json: @rating
@@ -15,7 +16,7 @@ class RatingsController < ApplicationController
   private
 
   def rating_params
-    params.require(:rating).permit(:mark).merge(user_id: current_user.id)
+    params.require(:rating).permit(:mark)
   end
 
   def find_song
