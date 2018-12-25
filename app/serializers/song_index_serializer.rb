@@ -2,9 +2,7 @@ class SongIndexSerializer < ActiveModel::Serializer
   attributes :singer, :name, :genre, :rating
 
   def genre
-    {
-      name: object.genre.name
-    }
+    object.genre.name
   end
 
   def rating

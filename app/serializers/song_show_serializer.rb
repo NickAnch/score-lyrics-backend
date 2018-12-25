@@ -3,9 +3,7 @@ class SongShowSerializer < ActiveModel::Serializer
              :views, :linkUrl, :rating, :genre
 
   def genre
-    {
-      name: object.genre.name
-    }
+    object.genre.name
   end
 
   def rating
