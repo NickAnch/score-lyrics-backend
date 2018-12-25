@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
-  resources :songs
-  resources :sessions, only: [:create, :destroy]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users,
+             controllers: {
+               registrations: 'registrations'
+             }
+  resources :users, only: :show
+  resource :profile, only: %i[show update]
+
+  resources :songs, only: %i[index create show update] do
+    resources :ratings, only: :create
+  end
 end

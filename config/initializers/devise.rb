@@ -9,7 +9,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'c5d7be3c705bb8354bbdcec20354fca9bc84e2acab5efa4b3457644c6c51b5d4cb570dbc6c35603ca1ccf3c07ef1e817ec168c75cc16a06b8bbdac9dbe70d4ef'
-  
+
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -249,6 +249,7 @@ Devise.setup do |config|
   #
   # The "*/*" below is required to match Internet Explorer requests.
   # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = []
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -280,4 +281,8 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.secrets.secret_key_base
+    jwt.expiration_time = 1.day.to_i
+  end
 end
