@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: :show
   resource :profile, only: %i[show update]
 
-  resources :songs do
+  resources :songs, only: %i[index create show update] do
     resources :ratings, only: :create
   end
 end
