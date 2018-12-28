@@ -22,5 +22,6 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   has_many :ratings, dependent: :destroy
+  has_many :songs
   has_one_attached :avatar
 end

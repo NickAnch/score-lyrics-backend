@@ -4,4 +4,5 @@ class Song < ApplicationRecord
 
   has_many :ratings, dependent: :destroy
   belongs_to :genre
+  belongs_to :user
 end
