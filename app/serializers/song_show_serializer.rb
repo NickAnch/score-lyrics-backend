@@ -1,7 +1,7 @@
 class SongShowSerializer < ActiveModel::Serializer
   attributes :singer, :name, :lyrics, :translate,
              :views, :linkUrl, :rating, :genre
-  belongs_to :user, serializer: UserSerializer
+  belongs_to :author, serializer: UserSerializer
 
   def genre
     object.genre.name

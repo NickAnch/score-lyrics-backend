@@ -17,7 +17,7 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song = Song.create(song_params.merge(user_id: current_user.id))
+    @song = Song.create(song_params)
 
     if @song.persisted?
       render json: @song
@@ -39,7 +39,7 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:singer, :name, :genre_id, :user_id,
+    params.require(:song).permit(:singer, :name, :genre_id,
                                  :lyrics, :translate, :linkUrl)
   end
 
