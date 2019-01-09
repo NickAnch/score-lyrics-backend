@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include Devise::JWT::RevocationStrategies::JTIMatcher
+  cattr_accessor :current
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -22,5 +23,8 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   has_many :ratings, dependent: :destroy
+  has_many :songs, dependent: :nullify,
+                   foreign_key: :author_id,
+                   inverse_of: :author
   has_one_attached :avatar
 end

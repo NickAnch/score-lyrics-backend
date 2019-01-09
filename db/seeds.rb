@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 FactoryBot.create_list :genre, 5
+FactoryBot.create_list :user, 5
 
 Genre.all.each do |genre|
-  FactoryBot.create_list :song, 3, genre: genre
+  FactoryBot.create_list :song, 3, genre: genre, author: User.all.sample
 end

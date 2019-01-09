@@ -4,4 +4,12 @@ class Song < ApplicationRecord
 
   has_many :ratings, dependent: :destroy
   belongs_to :genre
+  belongs_to :author, class_name: 'User',
+                      foreign_key: :author_id,
+                      inverse_of: :songs
+  before_validation :add_author
+
+  def add_author
+    self.author = User.current unless author
+  end
 end
