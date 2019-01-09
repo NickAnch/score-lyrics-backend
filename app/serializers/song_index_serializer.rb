@@ -1,5 +1,5 @@
 class SongIndexSerializer < ActiveModel::Serializer
-  attributes :singer, :name, :genre, :rating, :views
+  attributes :id, :singer, :name, :genre, :rating, :views
   belongs_to :author, serializer: UserSerializer
 
   def genre
