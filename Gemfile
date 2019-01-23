@@ -42,6 +42,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'devise'
 gem 'simple_token_authentication', '~> 1.0'
 gem 'devise-jwt'
+gem 'awesome_print'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

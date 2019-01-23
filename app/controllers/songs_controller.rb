@@ -3,7 +3,7 @@ class SongsController < ApplicationController
   before_action :set_song, only: %i[show update]
 
   def index
-    @songs = Song.all
+    @songs = prepare_songs
 
     render json: @songs,
            each_serializer: SongIndexSerializer
@@ -47,5 +47,18 @@ class SongsController < ApplicationController
     @song = Song.find_by(id: params[:id])
 
     head :unprocessable_entity unless @song
+  end
+
+  def prepare_songs
+    case params[:filtered]
+    when 'most_liked'
+      Song.left_joins(:ratings)
+          .group('ratings.mark, ratings.song_id').where(ratings: { mark: true })
+          .select('songs.*, count(ratings.mark) as likes').order('likes DESC')
+    when 'latest'
+      Song.includes(:ratings).order('created_at DESC').limit(10)
+    else
+      Song.includes(:ratings)
+    end
   end
 end
