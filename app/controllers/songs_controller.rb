@@ -58,7 +58,7 @@ class SongsController < ApplicationController
     when 'latest'
       Song.includes(:ratings).order('created_at DESC').limit(10)
     else
-      Song.all.includes(:ratings)
+      Song.includes(:ratings)
     end
   end
 end

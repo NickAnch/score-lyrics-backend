@@ -15,7 +15,8 @@ module ScoreLyricsBackend
         resource(
           '*',
           headers: :any,
-          methods: [:get, :patch, :put, :delete, :post, :options]
+          methods: [:get, :patch, :put, :delete, :post, :options],
+          expose: ['authorization']
         )
       end
     end
