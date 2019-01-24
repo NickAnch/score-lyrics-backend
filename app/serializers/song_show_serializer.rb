@@ -1,9 +1,9 @@
 class SongShowSerializer < ActiveModel::Serializer
   attributes :id, :singer, :name, :lyrics, :translate,
-             :views, :linkUrl, :rating, :genre
+             :views, :linkUrl, :rating, :genre_name
   belongs_to :author, serializer: UserSerializer
 
-  def genre
+  def genre_name
     object.genre.name
   end
 

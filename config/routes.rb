@@ -5,6 +5,7 @@ Rails.application.routes.draw do
              }
   resources :users, only: :show
   resource :profile, only: %i[show update]
+  resources :genres, only: %i[index]
 
   resources :songs, only: %i[index create show update] do
     resources :ratings, only: :create
