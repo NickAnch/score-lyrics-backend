@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :username, :birthday, :gender, :avatar
+  attributes :id, :username, :birthday, :gender, :avatar
   has_many :songs, serializer: SongIndexSerializer
 
   def avatar
