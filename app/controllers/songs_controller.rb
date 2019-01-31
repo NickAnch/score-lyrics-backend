@@ -52,8 +52,8 @@ class SongsController < ApplicationController
   def prepare_songs
     case params[:filtered]
     when 'most_liked'
-      Song.left_joins(:ratings)
-          .group('ratings.mark, ratings.song_id').where(ratings: { mark: true })
+      Song.left_joins(:ratings).group('ratings.mark, songs.id, ratings.song_id')
+          .where(ratings: { mark: true })
           .select('songs.*, count(ratings.mark) as likes').order('likes DESC')
     when 'latest'
       Song.includes(:ratings).order('created_at DESC').limit(10)
