@@ -9,6 +9,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
+  enum gender: { male: 1, female: 0 }
+
   validates :email, uniqueness: true,
                     presence: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP }
