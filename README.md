@@ -19,9 +19,16 @@ After installing go to project directory and install 2.5.1 ruby version
 
 ### 3. Install PostgreSQL
 
-Example:
+Example for Ubuntu:
+- ```sudo apt-get update```
 - ```sudo apt-get install postgresql postgresql-contrib```
 - ```sudo -u postgres psql```
+
+Create a user and grant access on database:
+- ```CREATE USER lyrics WITH password '123456'```
+- ```CREATE DATABASE '"song-lyrics-test";```
+- ```CREATE DATABASE '"song-lyrics-prod";```
+- ```ALTER USER lyrics createdb;```
 
 ### 4. Install gems
 
