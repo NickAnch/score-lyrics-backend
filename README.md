@@ -25,10 +25,10 @@ Example for Ubuntu:
 - ```sudo -u postgres psql```
 
 Create a user and grant access on database:
-- ```CREATE USER lyrics WITH password '123456'```
+- ```CREATE USER user2 WITH password '123456'```
 - ```CREATE DATABASE '"song-lyrics-test";```
 - ```CREATE DATABASE '"song-lyrics-prod";```
-- ```ALTER USER lyrics createdb;```
+- ```ALTER USER user2 createdb;```
 
 ### 4. Install gems
 
