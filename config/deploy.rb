@@ -2,6 +2,7 @@ require 'mina/rails'
 require 'mina/git'
 # require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 require 'mina/rvm'    # for rvm support. (https://rvm.io)
+require 'mina/puma'
 
 # Basic settings:
 #   domain       - The hostname to SSH to.
@@ -55,7 +56,7 @@ task :setup do
   command %(mkdir -p "#{fetch(:deploy_to)}/shared/public/uploads/")
 
   command %(touch "#{fetch(:deploy_to)}/shared/config/database.yml")
-  command %(touch "#{fetch(:deploy_to)}/shared/config/secrets.yml")
+  command %(touch "#{fetch(:deploy_to)}/shared/config/master.key")
 end
 
 desc "Deploys the current version to the server."
